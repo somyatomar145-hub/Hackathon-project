@@ -1,0 +1,18 @@
+const { analyzeAccount, sendApprovedEmail } = require("./revops-ai");
+
+const analysis = await analyzeAccount({
+  lastMeetingAt: "2026-09-19",
+  nextStep: "",
+  championReplied: false,
+  usageChangePct: -28,
+  renewalDate: "2026-11-22"
+});
+
+console.log(analysis);
+// Save the decision and draft. Send only after manager approval:
+await sendApprovedEmail({
+  approved: true,
+  to: "customer@example.com",
+  subject: analysis.emailSubject,
+  body: analysis.emailBody
+});
