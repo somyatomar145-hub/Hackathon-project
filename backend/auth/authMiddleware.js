@@ -18,8 +18,14 @@ const verifyToken = (req, res, next) => {
             process.env.JWT_SECRET
         );
 
-        req.user = decoded;
-        next();
+       if (decoded.role !== "manager") {
+    return res.status(403).json({
+        message: "Access denied. Manager role required."
+    });
+}
+
+req.user = decoded;
+next();
 
     } catch (error) {
         return res.status(401).json({
