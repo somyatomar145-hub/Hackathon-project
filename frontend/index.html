@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hawkeye | Sign in</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="function.js" defer></script>
+</head>
+<body>
+  <!-- Top-right notifications appear here -->
+  <div id="toast-stack" class="toast-stack"></div>
+
+  <main class="page">
+    <section class="card">
+      <img class="logo" src="logo.png" alt="Hawkeye: Connect, Analyze, Act" />
+
+      <div class="heading">
+        <h1>Welcome Back</h1>
+        <p>Sign in to your account to continue</p>
+      </div>
+
+      <form id="login-form" class="form" novalidate>
+        <label class="field">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <input id="user-id" type="text" placeholder="User ID" aria-label="User ID" autocomplete="username" />
+        </label>
+
+        <div class="field">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          <input id="password" type="password" placeholder="Password" aria-label="Password" autocomplete="current-password" />
+          <button id="toggle-password" class="peek" type="button" aria-label="Show password" aria-pressed="false">
+            <!-- eye (shown while password is hidden) -->
+            <svg id="icon-eye" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <!-- eye-off (shown while password is visible) -->
+            <svg id="icon-eye-off" class="icon" viewBox="0 0 24 24" aria-hidden="true" hidden>
+              <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+              <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+              <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+              <line x1="2" x2="22" y1="2" y2="22" />
+            </svg>
+          </button>
+        </div>
+
+        <button id="submit-btn" class="submit" type="submit">
+          <svg id="spinner" class="icon spin" viewBox="0 0 24 24" aria-hidden="true" hidden>
+            <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+          </svg>
+          <span id="submit-label">Continue</span>
+          <svg id="submit-arrow" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </button>
+      </form>
+
+      <div class="secure">
+        <div class="divider">
+          <span></span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+          <span></span>
+        </div>
+        <p>Secure access to your revenue intelligence platform</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

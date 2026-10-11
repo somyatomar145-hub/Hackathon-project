@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hawkeye | Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="dashboard.js" defer></script>
+</head>
+<body>
+  <!-- Top-right notifications -->
+  <div id="toast-stack" class="toast-stack"></div>
+  <!-- Pop-ups (details, export, coming soon) -->
+  <div id="modal-root"></div>
+  <!-- Dim layer behind the mobile sidebar -->
+  <div id="scrim" class="scrim" hidden></div>
+
+  <div class="app">
+    <!-- ================= Sidebar ================= -->
+    <aside id="sidebar" class="sidebar" aria-label="Main navigation">
+      <button id="logo-btn" class="logo-card" type="button" aria-label="Hawkeye, refresh dashboard">
+        <img src="logo.png" alt="Hawkeye: Connect, Analyze, Act" />
+      </button>
+
+      <h2 class="side-title">Workspace</h2>
+
+      <nav class="nav" aria-label="Workspace pages">
+        <a class="nav-item" href="dashboard.html" data-route="dashboard" aria-current="page">
+          <span class="chip" data-icon="layout"></span><span>Dashboard</span>
+        </a>
+        <a class="nav-item" href="#customer" data-route="customer">
+          <span class="chip" data-icon="users"></span><span>Customer</span>
+        </a>
+        <a class="nav-item" href="#insights" data-route="insights">
+          <span class="chip" data-icon="sparkles"></span><span>AI Insights</span>
+        </a>
+        <a class="nav-item" href="#approvals" data-route="approvals">
+          <span class="chip" data-icon="check"></span><span>Approvals</span>
+        </a>
+        <a class="nav-item" href="#history" data-route="history">
+          <span class="chip" data-icon="clock"></span><span>Action History</span>
+        </a>
+      </nav>
+
+      <button id="insights-card" class="insights-card" type="button">
+        <span class="ins-label">Insights summary</span>
+        <strong id="ins-value" class="ins-value">&nbsp;</strong>
+        <span id="ins-note" class="ins-note">&nbsp;</span>
+      </button>
+    </aside>
+
+    <!-- ================= Main ================= -->
+    <div class="main">
+      <header class="topbar">
+        <div class="title-wrap">
+          <button id="menu-btn" class="menu-btn" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false" data-icon="menu"></button>
+          <div>
+            <p class="eyebrow-text">Workspace overview</p>
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+
+        <div class="topbar-controls">
+        <div class="actions">
+          <div class="range" id="range-wrap">
+            <button id="range-btn" class="btn outline" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="range-menu">
+              <span data-icon="calendar" data-size="16"></span>
+              <span id="range-label">Last 30 days</span>
+              <span data-icon="chevron" data-size="16"></span>
+            </button>
+            <div id="range-menu" class="menu" role="menu" aria-label="Choose date range" hidden></div>
+          </div>
+
+          <button id="export-btn" class="btn solid" type="button">
+            <span data-icon="download" data-size="16"></span>
+            Export report
+          </button>
+        </div>
+        <button id="logout-btn" class="btn logout-btn" type="button" aria-label="Log out and return to login">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg> Log out
+        </button>
+        </div>
+      </header>
+
+      <main id="content" class="content" aria-live="polite">
+        <section id="hero" class="hero" aria-label="Workspace performance"><div class="skel" style="height:250px"></div></section>
+
+        <section id="stats" class="stats" aria-label="Key totals">
+          <div class="skel" style="height:140px"></div>
+          <div class="skel" style="height:140px"></div>
+          <div class="skel" style="height:140px"></div>
+        </section>
+
+        <div class="lower">
+          <section id="trend" class="card trend" aria-label="Activity trend"><div class="skel" style="height:340px"></div></section>
+          <section id="opps" class="card opps" aria-label="Revenue opportunity"><div class="skel" style="height:340px"></div></section>
+        </div>
+      </main>
+      <section id="customer-view" class="customer-view" aria-label="Customer directory" hidden></section>
+      <section id="ai-view" class="ai-view" aria-label="AI customer intelligence" hidden></section>
+    </div>
+  </div>
+</body>
+</html>
