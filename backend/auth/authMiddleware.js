@@ -1,31 +1,46 @@
-const jwt = require("jsonwebtoken");
+const { createClient } = require("@supabase/supabase-js");
 require("dotenv").config();
 
-const verifyToken = (req, res, next) => {
-    const authHeader = req.headers.authorization;
+const verifyToken = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        return res.status(401).json({
-            message: "Access denied. No token provided."
-        });
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({
+      message: "Access denied. No token provided."
+    });
+  }
+
+  const token = authHeader.slice(7);
+
+  try {
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const { data, error } = await supabase.auth.getUser(token);
+
+    if (error || !data.user) {
+      return res.status(401).json({
+        message: "Invalid or expired token"
+      });
     }
 
-    const token = authHeader.split(" ")[1];
+    req.user = {
+      id: data.user.id,
+      email: data.user.email
+    };
 
-    try {
-        const decoded = jwt.verify(
-            token,
-            process.env.JWT_SECRET
-        );
+    req.accessToken = token;
 
-        req.user = decoded;
-        next();
+    next();
+  } catch (error) {
+    console.error("Authentication error:", error.message);
 
-    } catch (error) {
-        return res.status(401).json({
-            message: "Invalid or expired token"
-        });
-    }
+    return res.status(500).json({
+      message: "Authentication verification failed"
+    });
+  }
 };
 
 module.exports = verifyToken;
